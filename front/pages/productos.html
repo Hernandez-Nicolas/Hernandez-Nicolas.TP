@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+</head>
+<body>
+    <div class="container-fluid p-0">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-success">
+                <div class="container-fluid">
+                    <a href="#" class="navbar-brand">Comercio</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#selectorDePaginas"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label-toggle="Toggle-navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="selectorDePaginas">
+                        <div class="navbar-nav">
+                            <a href="./productos.html" class="nav-link active" aria-current="page">Inicio</a>
+                            <a href="#" class="nav-link" id="carrito">Carrito</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section class="d-flex">
+            <aside id="filtros">
+                <!-- crear dinamicamente los filtros -->
+            </aside>
+            <main>
+                <section>
+                    <div class="row row-cols-2 row-cols-lg-4 m-1" id="productos">
+                        <!-- aqui se crean los diferentes productos -->
+                    </div>
+                    <nav aria-label="page navigation example">
+                        <ul class="pagination justify-content-center" id="paginacion">
+                            <!-- aqui se agregaran las diferentes paginar posibles de navegar para ver los productos -->
+                        </ul>
+                    </nav>
+                </section>
+            </main>
+        </section>
+        <footer>
+            <div class="container-fluid bg-warning">
+                <p>Hernandez Nicolas</p>
+                <p>Github del proyecto: <a href="https://github.com/Hernandez-Nicolas/Hernandez-Nicolas.TP">https://github.com/Hernandez-Nicolas/Hernandez-Nicolas.TP</a> </p>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/manejadorProductos.js"></script>
+    <script src="../js/productos.js"></script>
+</body>
+</html>

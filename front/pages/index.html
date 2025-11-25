@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log-in</title>
+    <title>Bienvenida</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/style.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
-    <div class="container">
-        <h1>Comercio plantas</h1>
-        <form action="" class="needs-validation" id="login" novalidate>
-            <div>
-                <label for="nombre" class="form-label">Ingrese su nombre</label>
-                <input type="text" class="form-control" id="nombre" required>
-                <div class="invalid-feedback" id="nombreError"></div>
-            </div>
-            <button type="submit" class="btn btn-success"> Continuar</button>
-        </form>
+    <div class="d-flex flex-colum align-items-center justify-content-center">
+        <h1 class="text-primary-emphasis inicio">Comercio</h1>
+        <div class="container login">
+            <form action="" class="p-2 needs-validation" id="login" novalidate>
+                <div class="py-3">
+                    <label for="nombre" class="form-label text-primary-emphasis">Ingrese su nombre</label>
+                    <input type="text" class="form-control" id="nombre" required>
+                    <div class="invalid-feedback" id="nombreError"></div>
+                </div>
+                <button type="submit" class="btn btn-success">Continuar</button>
+            </form>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+    <script src="../js/index.js"></script>
 </body>
 </html>
