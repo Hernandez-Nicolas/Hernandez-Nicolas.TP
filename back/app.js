@@ -10,7 +10,9 @@ const cors = require("cors");
 
 /* Require de las rutas */
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const dashBoardRouter = require('./routes/dashBoard');
+const productoRouter = require('./routes/producto');
+const imagenRouter = require('./routes/imagen');
 
 const app = express();/* Creo una instancia de express */
 app.use(cors());/* Habilito cors */
@@ -26,7 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/dashboard', dashBoardRouter);
+app.use('/producto', productoRouter);
+app.use('/imagen', imagenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -45,7 +49,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-/* const db = require("./data/db");
+const db = require("./data/db");
 const conexionDB = async () => {
   try{
     await db.authenticate();
@@ -53,5 +57,6 @@ const conexionDB = async () => {
   }catch(err){
     console.log(err);
   }
-}; */
+};
+conexionDB();
 module.exports = app;
