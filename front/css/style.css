@@ -61,10 +61,24 @@ input.cantidad{
     border: none;
 }
 
+.card > img {
+    height: 200px;
+    width: auto;
+}
+
+.card:hover{
+    animation: rebote 0.2s;
+    transition: var(--transition);
+}
+
 @media (max-width: 1024px){
     div.login{
         width: 60%;
         height: 30%;
+    }
+
+    .card > img {
+        height: 150px;
     }
 }
 
@@ -73,6 +87,10 @@ input.cantidad{
     width: 80%;
     height: 40%;
     }
+
+    .card > img {
+        height: 100px;
+    }
 }
 
 @keyframes rebote{
@@ -80,7 +98,7 @@ input.cantidad{
         transform: translateY(0);
     }
     50%{
-        transform: translateY(-5vh);
+        transform: translateY(-1vh);
     }
     100%{
         transform: translateY(0);

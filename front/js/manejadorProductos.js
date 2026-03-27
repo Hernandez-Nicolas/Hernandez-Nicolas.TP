@@ -9,12 +9,12 @@ class ManejadorProductos{
     }
 
     async init () {
-        let res = await axios.get("https://jsonplaceholder.typicode.com/posts");/* pedido de ejemplo de los datos */
+        let res = await axios.get("http://localhost:3000/producto");/* pedido de ejemplo de los datos */
         this.productos = res.data;
         this.productos.forEach(producto => {
             /* se toma el userId a modo de categoria. Con los datos reales se usara producto.categoria */
-            if(!this.categorias.includes(producto.userId)){
-                this.categorias.push(producto.userId);
+            if(!this.categorias.includes(producto.categoria)){
+                this.categorias.push(producto.categoria);
             }
         });
         /* cargo por primera vez los productos */
@@ -27,9 +27,9 @@ class ManejadorProductos{
     
     /* agrega los botones de las categorias y sus addEventListeners */
     agregarBotonesCategorias(){
-        document.querySelector("#filtros").innerHTML = `<button class="btn btn-filtro btn-primary m-1" data-filtro="todos">todos</button>`
+        document.querySelector("#filtros").innerHTML = `<li><button class="btn btn-filtro btn-primary m-1" data-filtro="todos">todos</button></li>`;
         document.querySelector("#filtros").innerHTML += this.categorias.map(categoria=>
-            `<button class="btn btn-filtro btn-primary m-1" data-filtro="${categoria}">${categoria}</button>`
+            `<li><button class="btn btn-filtro btn-primary m-1" data-filtro="${categoria}">${categoria}</button></li>`
         ).join('');
         document.querySelectorAll(".btn-filtro").forEach(boton => {
             boton.addEventListener("click",e=>{
@@ -44,7 +44,7 @@ class ManejadorProductos{
         this.paginaActiva = 1;
         let filtrado = this.productos;
         if(this.filtro!=="todos"){/* cambiar el producto.userId por producto.categoria cuando se traigan los datos reales */
-            filtrado = this.productos.filter(producto=>producto.userId==this.filtro);
+            filtrado = this.productos.filter(producto=>producto.categoria==this.filtro);
         }
         this.crearPaginacion(filtrado);
     }
@@ -75,10 +75,7 @@ class ManejadorProductos{
             document.querySelector(`#btn${i+1}`).addEventListener("click",(e)=>{
                 this.paginaActiva = parseInt(e.target.textContent);
                 this.productosPaginaActual(productos,cantidadPorPagina);
-                document.querySelectorAll(".active").forEach(activo=>{activo.classList.remove("active")});
-                document.querySelector(`#li${i+1}`).classList.add("active")
-                this.paginaActiva==1?btnAnterior.setAttribute("hidden",true):btnAnterior.removeAttribute("hidden");
-                this.paginaActiva==totalPaginas?btnSiguiente.setAttribute("hidden",true):btnSiguiente.removeAttribute("hidden");
+                this.actualizarBarraPaginacion(totalPaginas);
             });
         }
 
@@ -87,8 +84,7 @@ class ManejadorProductos{
             if(this.paginaActiva>1){
                 this.paginaActiva--;
                 this.productosPaginaActual(productos,cantidadPorPagina);
-                /* si es la primera pagina lo esconde, si no, lo muestra */
-                this.paginaActiva==1?btnAnterior.setAttribute("hidden",true):btnAnterior.removeAttribute("hidden");
+                this.actualizarBarraPaginacion(totalPaginas);
             }
         });
 
@@ -97,10 +93,21 @@ class ManejadorProductos{
             if(this.paginaActiva<totalPaginas){
                 this.paginaActiva++;
                 this.productosPaginaActual(productos,cantidadPorPagina);
-                /* si es la primera pagina lo esconde, si no, lo muestra */
-                this.paginaActiva==totalPaginas?btnSiguiente.setAttribute("hidden",true):btnSiguiente.removeAttribute("hidden");
+                this.actualizarBarraPaginacion(totalPaginas);
             }
         });
+    }
+    
+    /* Muestra que pagina esta activa y esconde o muestra los botones anterior/siguiente dependiendo de en que pagina se este */
+    actualizarBarraPaginacion(totalPaginas){
+        const btnAnterior = document.querySelector("#btnAnterior");
+        const btnSiguiente = document.querySelector("#btnSiguiente");
+
+        document.querySelectorAll(".active").forEach(activo=>{activo.classList.remove("active")});
+        document.querySelector(`#li${this.paginaActiva}`).classList.add("active")
+
+        this.paginaActiva==1?btnAnterior.setAttribute("hidden",true):btnAnterior.removeAttribute("hidden");
+        this.paginaActiva==totalPaginas?btnSiguiente.setAttribute("hidden",true):btnSiguiente.removeAttribute("hidden");
     }
 
     /* Toma la lista filtrada y la cantidad por pagina. Renderiza los productos de la pagina actual */
@@ -122,10 +129,11 @@ class ManejadorProductos{
         document.querySelector("#productos").innerHTML = productos.map(producto=>
             `<div class="col">
                 <div class="card text-center my-2">
-                    <h5 class="card-header">${producto.id}</h5>
+                    <img src="${producto.imgURL}" class="card-img-top" alt="${producto.nombre}">
                     <div class="car-body">
-                        <h5 class="car-title">${producto.title}</h5>
-                        <p class="card-text">${producto.body}</p>
+                        <h5 class="car-title">${producto.nombre}</h5>
+                        <p class="card-text">${producto.descripcion}</p>
+                        <p >${producto.precio}</p>
                     </div>
                     <div class="card-footer">
                         <div class="d-flex flex-row justify-content-center pb-1">
@@ -177,6 +185,8 @@ class ManejadorProductos{
                 if(!enCarrito.map(producto=>producto.id).includes(producto.id)){
                     let agregado = {
                         id: producto.id,
+                        nombre: producto.nombre,
+                        precio: producto.precio,
                         cantidad: parseInt(input.value)
                     };
                     enCarrito.push(agregado);

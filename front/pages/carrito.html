@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container-fluid p-0">
-        <header class="sticky-top">
+        <header>
             <nav class="navbar navbar-expand-lg bg-success">
                 <div class="container-fluid">
                     <a href="./index.html" class="navbar-brand">Comercio</a>
@@ -27,24 +27,22 @@
                 </div>
             </nav>
         </header>
-        <section class="d-flex py-2">
-            <aside>
-                <ul id="filtros" type="none">
-                    <!-- crear dinamicamente los filtros -->
+        <section class="container d-flex" >
+            <main class="d-flex align-items-center rounded-4 m-3" style="background-color: var(--color-blanco);">
+                <ul class="w-100" type="none" id="contenidoCarrito">
+                    <!-- aqui iran los productos del carrito -->
+                </ul>
+            </main>
+            <aside class="m-3" style="background-color: var(--color-blanco);">
+                <ul class="" id="preTicket">
+                    <!-- aqui iran las caracteristicas de los productos -->
+                     <li class="d-flex">
+                        <p class="me-auto">Producto</p>
+                        <p class="">Precio</p>
+                        <p class="text-end">cantidad</p>
+                     </li>
                 </ul>
             </aside>
-            <main>
-                <section>
-                    <div class="row row-cols-2 row-cols-lg-4 m-1" id="productos">
-                        <!-- aqui se crean los diferentes productos -->
-                    </div>
-                    <nav aria-label="page navigation example">
-                        <ul class="pagination justify-content-center" id="paginacion">
-                            <!-- aqui se agregaran las diferentes paginas posibles de navegar para ver los productos -->
-                        </ul>
-                    </nav>
-                </section>
-            </main>
         </section>
         <footer>
             <div class="container-fluid bg-warning">
@@ -56,7 +54,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/manejadorProductos.js"></script>
-    <script src="../js/productos.js"></script>
+    <script src="../js/carrito.js"></script>
 </body>
 </html>

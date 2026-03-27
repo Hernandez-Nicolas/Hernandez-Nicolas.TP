@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         const entradas = document.querySelectorAll(":invalid");
         if(entradas.length===0){
             localStorage.setItem("name",document.querySelector("#nombre").value);
-            localStorage.setItem("carrito",[]);
+            localStorage.setItem("carrito",JSON.stringify([]));
             window.location.href="../pages/productos.html";
         }
         entradas.forEach(entrada => {
