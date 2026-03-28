@@ -1,5 +1,5 @@
-const renderInderx = (req,res) => {
+const indexRender = (req,res) => {
     res.render('loggin');
 }
 
-module.exports = renderInderx;
+module.exports = indexRender;
